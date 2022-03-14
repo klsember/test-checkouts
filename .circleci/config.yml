@@ -17,6 +17,7 @@ workflows:
     jobs:
       - continuation/continue:
           configuration_path: .circleci/first-config.yml
+          parameters: .circleci/parameters.json
   setup_nonmain_workflow:
     when:
       not:

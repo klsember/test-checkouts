@@ -1,4 +1,9 @@
 version: 2.1
+parameters: 
+  global-param:
+    default: "value"
+    type: string
 
 steps:
   - run: echo "From a downstream file"
+  - run: echo <<pipeline.parameters.global-param>>

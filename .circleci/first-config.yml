@@ -1,4 +1,9 @@
 version: 2.1
+
+parameters: 
+  global-param:
+    type: string
+
 jobs:
   update-packages:
     docker:

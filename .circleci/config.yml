@@ -5,18 +5,21 @@ setup: true
 orbs:
   continuation: circleci/continuation@0.2.0
 
+
+jobs: 
+  test-continue:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - checkout
+      - continuation/continue:
+          configuration_path: .circleci/test-continue.yml
+          parameters: .circleci/parameters.json
+
+
 workflows:
   setup_main_workflow:
     when: 
       equal: [<< pipeline.git.branch >>, "main"]
     jobs:
-      - continuation/continue:
-          configuration_path: .circleci/first-config.yml
-          parameters: .circleci/parameters.json
-  setup_nonmain_workflow:
-    when:
-      not:
-        equal: [<< pipeline.git.branch >>, "main"]
-    jobs:
-      - continuation/continue:
-          configuration_path: .circleci/second-config.yml
+      - test-continue

@@ -29,7 +29,6 @@ workflows:
       - update-packages
   non-main:
     when:
-      not:
-        equal: [<<pipeline.git.branch>>, "main"]
+      equal: [<<pipeline.git.branch>>, "main"]
     jobs:
       - this-is-second

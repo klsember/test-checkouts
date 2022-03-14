@@ -20,6 +20,7 @@ jobs:
 workflows:
   setup_main_workflow:
     when: 
-      equal: [<< pipeline.git.branch >>, "main"]
+      not:
+        equal: [<< pipeline.git.branch >>, "main"]
     jobs:
       - test-continue

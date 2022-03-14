@@ -12,7 +12,7 @@ jobs:
     steps:
       - checkout
       - run: echo "testing this"
-      - run: echo <<parameters.pipeline.global-param>>
+      - run: echo <<pipeline.parameters.global-param>>
 workflows:
   main:
     jobs:

@@ -1,9 +1,35 @@
 version: 2.1
+
 parameters: 
   global-param:
     default: "value"
     type: string
 
-steps:
-  - run: echo "From a downstream file"
-  - run: echo <<pipeline.parameters.global-param>>
+jobs:
+  update-packages:
+    docker:
+      - image: cimg/node:lts
+    steps:
+      - checkout
+      - run: echo "testing this"
+      - run: echo <<pipeline.parameters.global-param>>
+  this-is-second:
+    docker:
+      - image: cimg/node:lts
+    steps:
+      - checkout
+      - run: echo "testing this is second"
+
+
+workflows:
+  main:
+    when:
+      equal: [<<pipeline.git.branch>>, "main"]
+    jobs:
+      - update-packages
+  non-main:
+    when:
+      not:
+        equal: [<<pipeline.git.branch>>, "main"]
+    jobs:
+      - this-is-second

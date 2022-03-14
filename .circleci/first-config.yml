@@ -1,0 +1,12 @@
+version: 2.1
+jobs:
+  update-packages:
+    docker:
+      - image: cimg/node:lts
+    steps:
+      - checkout
+      - run: echo "testing this"
+workflows:
+  main:
+    jobs:
+      - update-packages

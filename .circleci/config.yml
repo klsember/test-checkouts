@@ -14,8 +14,8 @@ workflows:
           configuration_path: .circleci/first-config.yml
   setup_nonmain_workflow:
     when:
-      not: 
-        - equal: [<< pipeline.git.branch >>, "main"]
+      not:
+        equal: [<< pipeline.git.branch >>, "main"]
     jobs:
       - continuation/continue:
           configuration_path: .circleci/second-config.yml

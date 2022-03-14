@@ -15,7 +15,6 @@ workflows:
           parameters: .circleci/parameters.json
   setup_nonmain_workflow:
     when:
-      not:
         equal: [<< pipeline.git.branch >>, "main"]
     jobs:
       - continuation/continue:

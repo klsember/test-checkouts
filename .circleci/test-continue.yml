@@ -24,8 +24,10 @@ jobs:
 workflows:
   main:
     when:
-      not:
-        equal: [<<pipeline.git.branch>>, "main"]
+        matches: { 
+          pattern: "/^prod-plk-.*/", 
+          value: << pipeline.git.tag >> 
+        }
     jobs:
       - update-packages
   non-main:

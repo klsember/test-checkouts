@@ -11,7 +11,7 @@ jobs:
       - image: cimg/node:lts
     steps:
       - checkout
-      - run: echo "testing this"
+      - run: sh ./scripts/test.sh
       - run: echo <<pipeline.parameters.global-param>>
   this-is-second:
     docker:

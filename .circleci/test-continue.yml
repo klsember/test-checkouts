@@ -23,13 +23,13 @@ jobs:
 
 workflows:
   main:
-    when:
-        matches: { 
-          pattern: "/^prod-plk-.*/", 
-          value: << pipeline.git.tag >> 
-        }
     jobs:
       - update-packages
+        filters:
+          tags:
+            only: /^prod-plk-.*/
+          branches:
+            ignore: /.*/
   non-main:
     when:
       not:

@@ -24,12 +24,12 @@ jobs:
 workflows:
   main:
     jobs:
-      - update-packages
-        filters:
-          tags:
-            only: /^prod-plk-.*/
-          branches:
-            ignore: /.*/
+      - update-packages:
+          filters:
+            tags:
+              only: /^prod-plk-.*/
+            branches:
+              ignore: /.*/
   non-main:
     when:
       not:
